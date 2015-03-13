@@ -4,6 +4,9 @@
   "repository": {
     "url": "git://github.com/angular/material.git"
   },
+    "dependencies": {
+        "harp": "*"
+    },
   "devDependencies": {
     "canonical-path": "0.0.2",
     "conventional-changelog": "0.0.9",
@@ -43,5 +46,9 @@
     "q": "^1.0.1",
     "stream-series": "^0.1.1",
     "through2": "^0.6.3"
-  }
+  },
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.2.x"
+    }
 }
