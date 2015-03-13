@@ -19,6 +19,7 @@
       <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
+
       <h1>Fananalitycs</h1>
     </md-toolbar>
 
@@ -26,9 +27,16 @@
 
         <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
           <md-list>
+              <md-item>
+                  <md-input-container>
+                      <label>Search</label>
+                      <input type="text" ng-model="search">
+                  </md-input-container>
+              </md-item>
+
             <md-item ng-repeat="it in ul.users">
                 <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+                    <img ng-src="{{it.picture.data.url}}" class="avatar" />
                   {{it.name}}
                 </md-button>
             </md-item>
@@ -36,9 +44,17 @@
         </md-sidenav>
 
         <md-content flex id="content">
-          <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-          <h2>{{ul.selected.name}}</h2>
-          <p>{{ul.selected.content}}</p>
+            <div layout="row" layout-wrap>
+                <div flex="60">
+                    <img style="max-width: 100%" ng-src="{{ul.selected.cover.source}}" />
+                    <h2>{{ul.selected.name}}</h2>
+                    <h4>{{ul.selected.about}}</h4>
+                </div>
+                <div flex="40">
+                    <h1>Likes: {{ul.selected.likes}}</h1>
+                    <h2>Is Verifed: {{ul.selected.is_verified}}</h2>
+                </div>
+            <!--{{ul.selected | json}}-->
 
           <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
             <md-icon md-svg-icon="share"></md-icon>

@@ -28,14 +28,26 @@
     userService
           .loadAllUsers()
           .then( function( users ) {
-            self.users    = [].concat(users);
-            self.selected = users[0];
+            for (var item in users) {
+
+                FacebookAnalitycs
+                    .get(users[item].id)
+                    .then( function( datas ) {
+                        self.users.push(datas);
+                        console.log(datas);
+                    });
+
+
+
+
+
+                self.selected = self.users[0];
+
+            }
+
+
           });
-      FacebookAnalitycs
-          .get()
-          .then( function( datas ) {
-              console.log(datas);
-          });
+
     // *********************************
     // Internal methods
     // *********************************

@@ -5,13 +5,14 @@
   "description": "Social media analitycs",
   "repository": "https://github.com/dbreuer/funanalitycs",
   "license": "MIT",
-    "dependencies": {
-        "harp": "*"
-    },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
-    },
+  "dependencies": {
+    "cron": "^1.0.9",
+    "harp": "*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
   "devDependencies": {
     "karma": "~0.10",
     "protractor": "^1.1.1",
