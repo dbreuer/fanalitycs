@@ -1,162 +1,176 @@
-# Material Design for AngularJS Apps [![Build Status](https://travis-ci.org/angular/material.svg)](https://travis-ci.org/angular/material)
+# Angular Material-Start 
 
-[Material Design](https://www.google.com/design/spec/material-design/) is a specification for a
-unified system of visual, motion, and interaction design that adapts across different devices. Our
-goal is to deliver a lean, lightweight set of AngularJS-native UI elements that implement the
-material design specification for use in Angular single-page applications (SPAs).
+This Material **start*** project is a *seed* for AngularJS Materal applications. The project contains a sample AngularJS application and is preconfigured to install the Angular framework and a bunch of development and testing tools for instant web development gratification.
 
-![venn diagram](https://cloud.githubusercontent.com/assets/210413/5077572/30dfc2f0-6e6a-11e4-9723-07c918128f4f.png)
+This sample application is intended to be useful as both a learning tool and a skeleton application for a typical [AngularJS Material](http://angularjs.org/) web app: comprised of a Side navigation area and a content area. You can use it to quickly bootstrap your angular webapp projects and dev environment for these
+projects.
 
-This project is in early pre-release. Angular Material is both a reference implementation of
-Material Design and a complementary effort to the [Polymer](https://www.polymer-project.org/)
-project's [Paper Elements](https://www.polymer-project.org/docs/elements/paper-elements.html)
-collection.
+### What is the UX?
 
-Quick Links:
+Below is a snaphot of the Starter-App with the Users' *master-detail* view. Also shown is the user experience that will is displayed for smaller device sizes. The responsive layout changes to hide the user list, reveal the **menu** button. In the User Details view, you may also click the **share** button  to show the Contact &lt;User&gt; bottom sheet view.
 
-*  [API & Demos](#demos)
-*  [Contributing](#contributing)
-*  [Building](#building)
-*  [Installing](#installing)
+<br/>
+
+![material-starter-ux2](https://cloud.githubusercontent.com/assets/210413/6448551/70864488-c0e0-11e4-8767-c4e1e4c2f343.png)
 
 
-Please note that using Angular Material requires the use of **Angular 1.3.x** or higher. Angular
-Material is targeted for all browsers with versions n-1; where n is the current browser version.
+<br/>
 
-## <a name="demos"></a> Online Documentation (and Demos)
+This Starter app demonstrates how:
 
-![angularmaterial](https://cloud.githubusercontent.com/assets/210413/5148790/fb9ecf52-7187-11e4-9adc-fc5ef263b4ce.png)
+*  Angular Material `layout` and `flex` options can easily configure HTML containers
+*  Angular Material components `<md-toolbar>`, `<md-sidenav>`, `<md-icon>` can be quickly used
+*  Custom controllers can use and show `<md-bottomsheet>` with HTML templates
+*  Custom controller can easily, programmatically open & close the SideNav component.
+*  Responsive breakpoints and `$mdMedia` are used
+*  Theming can be altered/configured using `$mdThemingProvider`
+*  ARIA features are supported by Angular Material and warnings can be used to improve accessibility.
 
-- Visit [Material.AngularJS.org](https://material.angularjs.org/) online to review the API, see the
-  components in action with live Demos, and study the Layout system.
-- Or you can build the documentation and demos locally; see
-  [Build Docs & Demos](https://github.com/angular/material/tree/master/docs/README.md) for details.
+### Tutorials
 
-## <a name="contributing"></a> Contributing
+The repository contains both ES5 and ES6 versions of the application. Traditional development with ES5 standards and solutions are presented here by default. Tutorials are included: step-by-step instructions that clearly demonstrate how the Starter application can be created in minutes. 
 
-Developers interested in contributing should read the following guidelines:
+> These tutorials will be presented live, on-stage at **ng-conf 2015, Utah**.
 
-- [Issue Guidelines](docs/guides/CONTRIBUTING.md#submit)
-- [Contributing Guidelines](docs/guides/CONTRIBUTING.md)
-- [Coding Guidelines](docs/guides/CODING.md)
-- [ChangeLog](CHANGELOG.md)
+Developers should checkout the following repository branches for:
 
-> Please do **not** ask general questions in an issue. Issues are only to report bugs, request
-  enhancements, or request new features. For general questions and discussions, use the
-  [Angular Material Forum](https://groups.google.com/forum/#!forum/ngmaterial).
+* Branch [**Starter - ES5 Tutorials**](https://github.com/angular/material-start/tree/es5-tutorial): for  ES5 Tutorial steps & development process.
+* Branch [**Starter - ES6 Tutorials**](https://github.com/angular/material-start/tree/es6-tutorial): for  ES6 Tutorial steps & development process.
+* Branch [**Starter - ES6**](https://github.com/angular/material-start/tree/es6): for example implementation of Angular Material 1.x (and Angular 1.x) within an ES6 application.
 
-It is important to note that for each release, the [ChangeLog](CHANGELOG.md) is a resource that will
-itemize all:
+> The **README** for the ES6 branches will provide all details showing how easy, <u>more simplifed</u>, and <u>more manageable</u> it is to develop ES6 applications with Angular Material 1.x.<br/><br/>
 
-- Bug Fixes
-- New Features
-- Breaking Changes
+## Getting Started
 
-## <a name="building"></a> Building
+#### Prerequisites
 
-Developers can easily build Angular Material using NPM and gulp.
+You will need **git** to clone the material-start repository. You can get git from
+[http://git-scm.com/](http://git-scm.com/).
 
-* [Builds - Under the Hood](docs/guides/BUILD.md)
+We also use a number of node.js tools to initialize and test material-start. You must have node.js and
+its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
-First install or update your local project's **npm** tools:
+#### Clone material-start
+
+To get you started you can simply clone `master` branch from the [Material-Start](https://github.com/angular/material-start) repository and install the dependencies:
+
+> NOTE: The `master` branch contains the traditional, ES5 implementation familiar to Angular developers.
+
+Clone the material-start repository using [git][git]:
+
+```
+git clone https://github.com/angular/material-start.git
+cd material-start
+```
+
+If you just want to start a new project without the material-start commit history then you can do:
 
 ```bash
-# First install all the NPM tools:
-npm install
+git clone --depth=1 https://github.com/angular/material-start.git <your-project-name>
+```
 
-# Or update
+The `depth=1` tells git to only pull down one commit worth of historical data.
+
+#### Install Dependencies
+
+We have two kinds of dependencies in this project: tools and angular framework code.  The tools help
+us manage and test the application.
+
+* We get the tools we depend upon via `npm`, the [node package manager][npm].
+* We get the angular code via `bower`, a [client-side code package manager][bower].
+
+We have preconfigured `npm` to automatically run `bower` so we can simply do:
+
+```
+npm install
+```
+
+Behind the scenes this will also call `bower install`.  You should find that you have two new
+folders in your project.
+
+* `node_modules` - contains the npm packages for the tools we need
+* `app/bower_components` - contains the angular framework files
+
+*Note that the `bower_components` folder would normally be installed in the root folder but
+material-start changes this location through the `.bowerrc` file.  Putting it in the app folder makes
+it easier to serve the files by a webserver.*
+
+## Directory Layout
+
+```
+app/                    --> all of the source files for the application
+  assets/app.css        --> default stylesheet
+  src/           --> all app specific modules
+     users/              --> package for user features
+  index.html            --> app layout file (the main html template file of the app)
+karma.conf.js         --> config file for running unit tests with Karma
+e2e-tests/            --> end-to-end tests
+  protractor-conf.js    --> Protractor config file
+  scenarios.js          --> end-to-end scenarios to be run by Protractor
+```
+
+## Updating Angular
+
+Previously we recommended that you merge in changes to angular-seed into your own fork of the project.
+Now that the angular framework library code and tools are acquired through package managers (npm and
+bower) you can use these tools instead to update the dependencies.
+
+You can update the tool dependencies by running:
+
+```
 npm update
 ```
 
-Then run the **gulp** tasks:
+This will find the latest versions that match the version ranges specified in the `package.json` file.
 
-```bash
-# To build `angular-material.js/.css` and `Theme` files in the `/dist` directory
-gulp build
+You can update the Angular dependencies by running:
 
-# To build the Angular Material Docs and Demos in `/dist/docs` directory
-gulp docs
+```
+bower update
 ```
 
-For more details on how the build process works and additional commands (available for testing and
-debugging) developers should read the [Build Instructions](docs/guides/BUILD.md).
+This will find the latest versions that match the version ranges specified in the `bower.json` file.
 
-## <a name="installing"></a> Installing Build (Distribution Files)
 
-#### Bower 
+## Serving the Application Files
 
-For developers not interested in building the Angular Material library... use **bower** to install
-and use the Angular Material distribution files.
+While angular is client-side-only technology and it's possible to create angular webapps that
+don't require a backend server at all, we recommend serving the project files using a local
+webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
+sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
+etc to function properly when an html page is opened via `file://` scheme instead of `http://`.
 
-Change to your project's root directory.
+### Running the App during Development
 
-```bash
-# To get the latest stable version, use Bower from the command line.
-bower install angular-material
+The angular-seed project comes preconfigured with a local development webserver.  It is a node.js
+tool called [http-server][http-server].  You can install http-server globally:
 
-# To get the most recent, latest committed-to-master version use:
-bower install angular-material#master
+```
+sudo npm install -g http-server
 ```
 
-Visit [Bower-Material](https://github.com/angular/bower-material/blob/master/README.md) for more
-details on how to install and use the Angular Material distribution files within your own local
-project.
+Then you can start your own development web server to serve static files from a folder by running:
 
-#### CDN
-
-CDN versions of Angular Material are now available at
-[Google Hosted Libraries](https://developers.google.com/speed/libraries/devguide#angularmaterial). 
-
-With the Google CDN, you will not need to download local copies of the distribution files. Instead
-simply reference the CDN urls to easily use those remote library files. This is especially useful
-when using online tools such as [CodePen](http://codepen.io/), [Plunkr](http://plnkr.co/), or
-[JSFiddle](http://jsfiddle.net/).
-
-```html
-  <head>
-
-    <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css">
-
-  </head>
-  <body>
-  
-    <!-- Angular Material Dependencies -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
-    
-    
-    <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.js"></script>
-  </body>
+```
+cd app
+http-server -a localhost -p 8000
 ```
 
-> Note that the above sample references the 0.7.0 CDN release. Your version will change based on the latest stable release version.
+Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
+configure your server to serve the files under the `app/` directory.
 
-Developers seeking the latest, most-current build versions can use [RawGit.com](//rawgit.com) to
-pull directly from the distribution GitHub
-[Bower-Material](https://github.com/angular/bower-material) repository:
 
-```html
-  <head>
+## Contact
 
-    <!-- Angulars Material CSS using RawGit to load directly from `bower-material/master` -->
-    <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
+For more information on AngularJS please check out http://angularjs.org/
+For more information on Angular Material, check out https://material.angularjs.org/
 
-  </head>
-  <body>
-
-    <!-- Angular Material Dependencies -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.js"></script>
-
-    <!-- Angular Material Javascript using RawGit to load directly from `bower-material/master` -->
-    <script src="https://rawgit.com/angular/bower-material/master/angular-material.js"></script>
-
-  </body>
-```
-
-> Please note that the above RawGit access is intended **ONLY** for development purposes or sharing
-  low-traffic, temporary examples or demos with small numbers of people.
+[git]: http://git-scm.com/
+[bower]: http://bower.io
+[npm]: https://www.npmjs.org/
+[node]: http://nodejs.org
+[protractor]: https://github.com/angular/protractor
+[jasmine]: http://jasmine.github.io
+[karma]: http://karma-runner.github.io
+[travis]: https://travis-ci.org/
+[http-server]: https://github.com/nodeapps/http-server
