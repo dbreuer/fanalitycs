@@ -6,8 +6,13 @@
   "repository": "https://github.com/dbreuer/funanalitycs",
   "license": "MIT",
   "dependencies": {
+    "connect": "^3.3.4",
     "cron": "^1.0.9",
-    "harp": "*"
+    "express": "^3.1.2",
+    "harp": "*",
+    "http": "0.0.0",
+    "middleware": "^1.0.0",
+    "mysql": "^2.5.5"
   },
   "engines": {
     "node": "0.10.x",
