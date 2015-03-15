@@ -10,60 +10,73 @@
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+
+      <link rel="stylesheet" href="./bower_components/nvd3/nv.d3.css">
     <link rel="stylesheet" href="assets/app.css"/>
   </head>
 
   <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
 
-    <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
-      </md-button>
+  <section layout="row" flex>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+          <md-toolbar class="md-theme-indigo">
+              <h1 class="md-toolbar-tools">FANalitycs</h1>
+          </md-toolbar>
+          <md-content class="md-padding">
+              <h1 class="">TOP ten</h1>
+              <md-list>
+                  <md-item ng-repeat="item in ul.users">
 
-      <h1>Fananalitycs</h1>
-    </md-toolbar>
+                          <md-button  ng-click="ul.selectUser(item)"  class="md-button-colored">
+                              <md-item-content>
+                              <div class="md-tile-left">
+                                  <img ng-src="{{item.picture.data.url}}" class="face" alt="{{item.name}}">
+                              </div>
+                              <div class="md-tile-content">
+                                  <h3>{{item.name}}</h3>
+                                  <h4>{{item.who}}</h4>
+                                  <p>
+                                      {{item.notes}}
+                                  </p>
+                              </div>
 
-    <div flex layout="row">
+                      </md-item-content>
+                          </md-button>
+                  </md-item>
+              </md-list>
+          </md-content>
+      </md-sidenav>
+      <md-content flex class="">
+          <div layout="column" layout-fill layout-align="top center" class="" ng-if="ul.selected">
+                <md-toolbar class="">
+                    <div class="md-toolbar-tools">
+                        <h2>{{ul.selected.name}}</h2>
+                        <span flex></span>
+                        <h1>Likes: {{ul.selected.likes}}</h1>
+                    </div>
+                </md-toolbar>
+              <div layout="row" layout-align="space-around center" class="md-padding">
+                  <h2>{{ul.selected.is_verified}}</h2>
+                  <p>
+                      {{ul.selected.about}}
+                  </p>
+              </div>
+              <div layout="row" layout-align="space-around center" class="">
+                  <div flex>
+                      <nvd3 ng-if="ul.selected" options='ul.selected.options' data='ul.selected.data' api="ul.api"></nvd3>
+                  </div>
 
-        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-          <md-list>
-              <md-item>
-                  <md-input-container>
-                      <label>Search</label>
-                      <input type="text" ng-model="search">
-                  </md-input-container>
-              </md-item>
+              </div>
 
-            <md-item ng-repeat="it in ul.users">
-                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                    <img ng-src="{{it.picture.data.url}}" class="avatar" />
-                  {{it.name}}
-                </md-button>
-            </md-item>
-          </md-list>
-        </md-sidenav>
-
-        <md-content flex id="content">
-            <div layout="row" layout-wrap>
-                <div flex="60">
-                    <img style="max-width: 100%" ng-src="{{ul.selected.cover.source}}" />
-                    <h2>{{ul.selected.name}}</h2>
-                    <h4>{{ul.selected.about}}</h4>
-                </div>
-                <div flex="40">
-                    <h1>Likes: {{ul.selected.likes}}</h1>
-                    <h2>Is Verifed: {{ul.selected.is_verified}}</h2>
-                </div>
-            <!--{{ul.selected | json}}-->
-
-          <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon>
-          </md-button>
-        </md-content>
-
-    </div>
+          </div>
+          <div flex></div>
+      </md-content>
+  </section>
 
     <script src="./bower_components/angular/angular.js"></script>
+      <script src="./bower_components/d3/d3.js"></script>
+      <script src="./bower_components/nvd3/nv.d3.js"></script> <!-- or use another assembly -->
+      <script src="./bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>

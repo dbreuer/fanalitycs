@@ -3,7 +3,8 @@
 
   angular.module('users')
         .service('userService', ['$q', UserService])
-        .service('FacebookAnalitycs', ['$q', '$http', FacebookAnalitycs]);
+        .service('FacebookAnalitycs', ['$q', '$http', FacebookAnalitycs])
+        .service('SeacrhFacebookPerson', ['$q', '$http', SeacrhFacebookPerson]);
 
   /**
    * Users DataService
@@ -59,5 +60,22 @@
         //https://www.facebook.com/profile.php?id=185643387303
         //https://www.facebook.com/pages/Kiszel-T%C3%BCnde-hivatalos-oldala/110882779067292
         //var access_token ='794122650601154|1DPhNia4bi3oxqrfbBRenCQfvM0';
+    }
+
+    function SeacrhFacebookPerson($q, $http) {
+        var usr = {};
+        usr.get = function(param) {
+            var deferred = $q.defer();
+            $http.get('https://graph.facebook.com/search?q=' + escape(param) + '&type=page&access_token=794122650601154|1DPhNia4bi3oxqrfbBRenCQfvM0')
+                .then(function(response){
+                    deferred.resolve(response.data);
+                })
+                .catch(function(response){
+                    deferred.reject(response);
+                });
+            return deferred.promise;
+        }
+
+        return usr;
     }
 })();
