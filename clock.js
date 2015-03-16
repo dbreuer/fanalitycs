@@ -114,7 +114,7 @@ var fifteenSeconsAfterMinute = function() {
 
 var CronJob = require('cron').CronJob;
 new CronJob({
-    cronTime: "00 00 6 * * *",//after every hour
+    cronTime: "60 * * * * *",//after every hour
     onTick: fifteenSeconsAfterMinute,
     start: true,
     timeZone: "America/Los_Angeles"

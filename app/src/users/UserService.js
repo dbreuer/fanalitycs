@@ -2,7 +2,8 @@
   'use strict';
 
   angular.module('users')
-        .service('userService', ['$q', UserService])
+        .service('userService', ['$q', '$http', UserService])
+      .service('userData', ['$q', '$http', UserData])
         .service('FacebookAnalitycs', ['$q', '$http', FacebookAnalitycs])
         .service('SeacrhFacebookPerson', ['$q', '$http', SeacrhFacebookPerson]);
 
@@ -14,20 +15,50 @@
    * @returns {{loadAll: Function}}
    * @constructor
    */
-  function UserService($q){
-    var users = [
-
-    ];
-
-    // Promise-based API
-    return {
-      loadAllUsers : function() {
-        // Simulate async nature of real remote calls
-        return $q.when(users);
+  function UserService($q, $http){
+      var users = {};
+      users.loadAllUsers = function() {
+          var deferred = $q.defer();
+          $http.get('/api/all/users')
+              .then(function(response){
+                  deferred.resolve(response.data);
+              })
+              .catch(function(response){
+                  deferred.reject(response);
+              });
+          return deferred.promise;
       }
-    };
+
+      return users;
   }
 
+    function UserData($q, $http){
+        var users = {};
+        users.getData = function(param) {
+            var deferred = $q.defer();
+            $http.get('/api/'+param+'/status')
+                .then(function(response){
+                    deferred.resolve(response.data);
+                })
+                .catch(function(response){
+                    deferred.reject(response);
+                });
+            return deferred.promise;
+        },
+        users.loadAllUsersData = function() {
+            var deferred = $q.defer();
+            $http.get('/api/all/status')
+                .then(function(response){
+                    deferred.resolve(response.data);
+                })
+                .catch(function(response){
+                    deferred.reject(response);
+                });
+            return deferred.promise;
+        }
+
+        return users;
+    }
 
     /**
      *

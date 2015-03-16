@@ -47,15 +47,15 @@
           </md-content>
       </md-sidenav>
       <md-content flex class="">
-          <div layout="column" layout-fill layout-align="top center" class="" ng-if="ul.selected">
-                <md-toolbar class="">
+          <div layout="column" layout-fill layout-align="top center" class="" >
+                <md-toolbar class="" ng-if="ul.selected">
                     <div class="md-toolbar-tools">
                         <h2>{{ul.selected.name}}</h2>
                         <span flex></span>
                         <h1>Likes: {{ul.selected.likes}}</h1>
                     </div>
                 </md-toolbar>
-              <div layout="row" layout-align="space-around center" class="md-padding">
+              <div layout="row" layout-align="space-around center" class="md-padding" ng-if="ul.selected">
                   <h2>{{ul.selected.is_verified}}</h2>
                   <p>
                       {{ul.selected.about}}
@@ -63,7 +63,7 @@
               </div>
               <div layout="row" layout-align="space-around center" class="">
                   <div flex>
-                      <nvd3 ng-if="ul.selected" options='ul.selected.options' data='ul.selected.data' api="ul.api"></nvd3>
+                      <nvd3 options='ul.options' data='ul.data' api="ul.api"></nvd3>
                   </div>
 
               </div>
